@@ -1,52 +1,24 @@
+import { useState } from 'react';
+import { TableLine } from '../TableLine/TableLine';
 import './Table.scss';
+import { Element } from '../App/App';
+import { ActiveElement } from '../ActiveElement/ActiveElement';
 
-export const Table:React.FC<{elements: any[][]}> = ({elements}) => {
-    const line = elements.map((elem, i) => {
-        const cell = elem.map(elem => (
-            <td className={`table__td table__td_${elem.color}`}>
-                <div className="table__container">
-                    <div className="table__name-block">
-                        <span className="table__elem-symbol">{elem.elemSymbol}<br/></span>
-                        <span className="table__elem-name">{elem.elemName}</span>
-                    </div>
-                    <div className="table__weight-block">
-                        <span className="table__elem-number">{elem.elemNumber}</span><br/>
-                        <span className="table__elem-weight">{elem.elemWeight}</span>
-                    </div>
-                </div>
-            </td>)
-        );
-        const bool: boolean = cell.length > 10;
+interface Props {
+    elements: Array<Array<Element>>
+}
 
-        if (i === 0) {
-            return (
-                <tr>
-                    <td className="table__td">1</td>
-                    <td className="table__td table__elem-symbol">(H)</td>
-                    <td className="table__td"></td>
-                    <td className="table__td"></td>
-                    <td className="table__td"></td>
-                    <td className="table__td"></td>
-                    <td className="table__td"></td>
-                    {cell}
-                </tr>
-            )
-        }
-        return (
-            <>
-                <tr>
-                    <td className="table__td" rowSpan={bool ? 2 : 1}>{i + 1}</td>
-                    { bool ? cell.slice(0, 10) : cell}
-                </tr>
-                { bool && 
-                    <tr>
-                        {cell.slice(10)}
-                    </tr>
-                }
-            </>
-        )
-    })
+export const Table:React.FC<Props> = ({elements}: Props) => {
+    const [activeElement, setElement] = useState<Element>(elements[0][0]);
 
+    const setActiveElement = (elem: Element) => {
+        setElement(elem);
+    }
+
+    const lines = elements.map((elem, index) => (
+        <TableLine line={elem} index={index} setActiveElement={setActiveElement}/>
+    ))
+   
     return (
         <div>
             <table className="table">
@@ -64,8 +36,9 @@ export const Table:React.FC<{elements: any[][]}> = ({elements}) => {
                     <td className="table__td table__td_period">A VII B</td>
                     <td colSpan={3} className="table__td table__td_period">A VIII B</td>
                 </tr>
-                {line}
+                {lines}
             </table>
+            <ActiveElement {...activeElement}/>
         </div>
     )
 }

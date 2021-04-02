@@ -4,7 +4,7 @@ import { tableElements } from '../../tableElements/tableElements';
 export interface Element {
   elemSymbol: string,
   elemName: string,
-  elemNumber: number,
+  id: number,
   elemWeight: number,
   color: string
 }
