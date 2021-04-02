@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { TableLine } from '../TableLine/TableLine';
 import './Table.scss';
-import { Element } from '../App/App';
+import { Element } from '../../App';
 import { ActiveElement } from '../ActiveElement/ActiveElement';
 
 interface Props {

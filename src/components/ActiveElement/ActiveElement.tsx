@@ -1,4 +1,4 @@
-import { Element } from '../App/App';
+import { Element } from '../../App';
 import { TableCell } from '../TableCell/TableCell';
 import './ActiveElement.scss';
 

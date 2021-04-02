@@ -1,5 +1,5 @@
-import { Table } from '../Table/Table';
-import { tableElements } from '../../tableElements/tableElements';
+import { Table } from './components/Table/Table';
+import { tableElements } from './tableElements/tableElements';
 
 export interface Element {
   elemSymbol: string,

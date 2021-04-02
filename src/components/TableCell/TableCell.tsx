@@ -1,4 +1,4 @@
-import { Element } from "../App/App";
+import { Element } from "../../App";
 
 interface Props extends Element {
     setActiveElement?: any
