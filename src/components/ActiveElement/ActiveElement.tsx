@@ -1,8 +1,18 @@
-import { Element } from '../../App';
-import { TableCell } from '../TableCell/TableCell';
-import './ActiveElement.scss';
+import { useSelector } from 'react-redux';
 
-export const ActiveElement = ({elemSymbol, elemName, elemWeight, id, color}: Element) => {
+import { TableCell } from '../TableCell/TableCell';
+import { RootState } from '../../redux/rootReducers';
+
+export const ActiveElement = () => {
+   
+    const { elemSymbol, elemName, id, elemWeight, color }: any = useSelector((state: RootState) => { 
+        return state.tableReducer
+    });
+
+    if (id === null) {
+        return null;
+    }
+
     return (
         <div className="selected-elem">
             <TableCell elemSymbol={elemSymbol} 

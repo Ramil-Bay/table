@@ -1,0 +1,1 @@
+export const SELECTED_ELEMENT: string = 'SELECTED_ELEMENT';

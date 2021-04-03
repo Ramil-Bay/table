@@ -1,0 +1,1 @@
+export { selectedElem } from './table/tableActions';

@@ -2,14 +2,13 @@ import { Element } from "../../App";
 import { TableCell } from "../TableCell/TableCell"
 
 interface Props {
-    line: Element[],
+    line: Array<Element>,
     index: number,
-    setActiveElement: any
 }
 
 
-export const TableLine = ({line, index, setActiveElement}: Props) => {
-    const cell = line.map((elem: Element) => <TableCell {...elem} setActiveElement={setActiveElement}/>)
+export const TableLine = ({line, index}: Props) => {
+    const cell = line.map((elem: Element) => <TableCell {...elem}/>)
     const bool: boolean = cell.length > 10;
 
     return (

@@ -1,13 +1,14 @@
+import { useDispatch } from 'react-redux';
+
 import { Element } from "../../App";
+import { selectedElem } from '../../redux';
 
-interface Props extends Element {
-    setActiveElement?: any
-}
+export const TableCell = ({elemSymbol, elemName, elemWeight, id, color}: Element) => {
+    const dispatch = useDispatch();
 
-export const TableCell = ({elemSymbol, elemName, elemWeight, id, color, setActiveElement}: Props) => {
     return (
         <td className={`table__td table__td_${color} ${id && 'table__td_pointer'}`} 
-        onClick={id && setActiveElement ? () => setActiveElement({elemSymbol, elemName, elemWeight, id, color}) : undefined}>
+        onClick={id ? () => dispatch(selectedElem({elemSymbol, elemName, elemWeight, id, color})) : undefined}>
             <div className="table__container">
                 <div className="table__name-block">
                     <span className="table__elem-symbol">{elemSymbol}<br/></span>

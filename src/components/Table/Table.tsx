@@ -1,6 +1,5 @@
-import { useState } from 'react';
+
 import { TableLine } from '../TableLine/TableLine';
-import './Table.scss';
 import { Element } from '../../App';
 import { ActiveElement } from '../ActiveElement/ActiveElement';
 
@@ -9,14 +8,8 @@ interface Props {
 }
 
 export const Table:React.FC<Props> = ({elements}: Props) => {
-    const [activeElement, setElement] = useState<Element>(elements[0][0]);
-
-    const setActiveElement = (elem: Element) => {
-        setElement(elem);
-    }
-
     const lines = elements.map((elem, index) => (
-        <TableLine line={elem} index={index} setActiveElement={setActiveElement}/>
+        <TableLine line={elem} index={index} />
     ))
    
     return (
@@ -38,7 +31,7 @@ export const Table:React.FC<Props> = ({elements}: Props) => {
                 </tr>
                 {lines}
             </table>
-            <ActiveElement {...activeElement}/>
+            <ActiveElement />
         </div>
     )
 }
